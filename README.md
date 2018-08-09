@@ -1,0 +1,220 @@
+# reverse-iterable-array
+
+A reverse-iterable array implementation based on the built-in [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) object.
+
+
+
+## Table of Contents
+
+* [Installation](#installation)
+  * [ES Module](#es-module)
+  * [Node.js package](#nodejs-package)
+* [Usage Examples](#usage-examples)
+* [Tests](#tests)
+* [Documentation](#documentation)
+  * [`entries()`](#entries)
+  * [`forEachReverse()`](#foreachreverse)
+  * [`keys()`](#keys)
+  * [`reverseIterator()`](#reverseiterator)
+  * [`values()`](#values)
+  * [`[Symbol.iterator]()`](#symboliterator)
+  * [`[Symbol.toStringTag]()`](#symboltostringtag)
+  * [`iteratorFor()`](#iteratorfor)
+
+
+
+## Installation
+
+### ES Module
+
+```shell
+curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/master/src/reverse-iterable-array.mjs
+```
+
+```js
+import { ReverseIterableArray } from './src/reverse-iterable-array.mjs';
+
+const array = new ReverseIterableArray();
+```
+
+### Node.js package
+
+*(Requires Node version 8.5 or higher for ES module support)*
+
+Installs the node package as a dependency. It doesn’t have any non-development dependencies itself.
+
+```shell
+npm install --save reverse-iterable-array
+```
+
+```node
+import { ReverseIterableArray } from 'reverse-iterable-array';
+
+const array = new ReverseIterableArray();
+```
+
+Note, that Node.js version 8.5 or higher is required, as it comes with experimental support for ES modules. If you don’t want to use it as an ES module, you will need to transpile the package yourself.
+
+## Usage Examples
+
+You can have a look at some examples here: [kleinfreund.github.io/reverse-iterable-array](https://kleinfreund.github.io/reverse-iterable-array)
+
+Open the developer console to see the results of the test suite.
+
+Alternatively, run the examples locally after cloning this repository:
+
+```shell
+npm install
+npm run examples
+```
+
+
+
+## Tests
+
+**… with Node’s experimental ES module feature**:
+
+```shell
+npm test
+```
+
+
+
+## Documentation
+
+### `entries()`
+
+Returns an iterator containing the `[index, element]` pairs for each element in the `ReverseIterableArray` object in insertion order.
+
+An iterator containing the same pairs in reverse-insertion order can be obtained with `entries().reverse()`.
+
+#### Syntax
+
+```
+array.entries();
+```
+
+**Return value**:
+
+A new `ReverseIterableArray` iterator object.
+
+### `forEachReverse()`
+
+The `forEachReverse()` method executes a provided function once per each `[index, element]` pair in the `ReverseIterableArray` object, in reverse-insertion order.
+
+#### Syntax
+
+```
+array.forEachReverse(callback[, thisArg]);
+```
+
+**Parameters**:
+
+* **callback**: Function to execute for each element.
+* **thisArg**: Value to use as `this` when executing `callback`.
+
+### `keys()`
+
+Returns an iterator containing the indices for each element in the `ReverseIterableArray` object in insertion order.
+
+An iterator containing the same indices in reverse-insertion order can be obtained with `keys().reverse()`.
+
+#### Syntax
+
+```
+array.keys();
+```
+
+**Return value**:
+
+A new `ReverseIterableArray` iterator object.
+
+### `reverseIterator()`
+
+In theory, following the semantics of `[Symbol.iterator]()`, this should be `[Symbol.reverseIterator]()`. However, as a developer, I cannot define a well-known symbol myself and make use of it. In the future, the a proposal like [The ReverseIterable Interface, by Lee Byron](https://github.com/leebyron/ecmascript-reverse-iterable) might make it’s way into the specification. For the time being, the `reverseIterator()` function serves the same purpose.
+
+#### Syntax
+
+```
+array.reverseIterator();
+```
+
+**Return value**:
+
+The array **reverse-iterator** function, which is the `values().reverse()` function by default.
+
+### `values()`
+
+Returns an iterator containing the elements in the `ReverseIterableArray` object in insertion order.
+
+An iterator containing the same elements in reverse-insertion order can be obtained with `values().reverse()`.
+
+#### Syntax
+
+```
+array.values();
+```
+
+**Return value**:
+
+A new `ReverseIterableArray` iterator object.
+
+### `[Symbol.iterator]()`
+
+Returns the array iterator function. By default, this is the `values()` function.
+
+#### Syntax
+
+```
+array[Symbol.iterator]();
+```
+
+**Return value**:
+
+The array **iterator** function, which is the `entries()` function by default.
+
+#### Usage
+
+```js
+const array = new ReverseIterableArray(1, 2, 4);
+
+const iterator = array[Symbol.iterator]();
+
+iterator.next().value;
+//> 1
+
+iterator.next().value;
+//> 2
+
+iterator.next().value;
+//> 4
+
+iterator.next().value;
+//> undefined
+```
+
+### `[Symbol.toStringTag]()`
+
+The well-known symbol `Symbol.toStringTag` is accessed internally when callig `Object.prototype.toString()`.
+
+### `iteratorFor()`
+
+Returns an iterator containing the `[index, element]` pairs for each element in the `ReverseIterableArray` object in insertion order **starting with the pair specified by the `index` parameter**.
+
+This allows starting iteration at a specific element in the array.
+
+An iterator containing the same pairs in reverse-insertion order can be obtained with `iteratorFor(index).reverse()`.
+
+#### Syntax
+
+```
+array.iteratorFor(index);
+```
+
+**Parameters**:
+
+* **index**: Required. The index of the element to start iterating from.
+
+**Return value**:
+
+A new `ReverseIterableArray` iterator object.

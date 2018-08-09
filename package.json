@@ -1,0 +1,34 @@
+{
+  "name": "reverse-iterable-array",
+  "version": "1.0.0",
+  "description": "A reverse-iterable array implementation based on the built-in Array object",
+  "main": "./src/reverse-iterable-array",
+  "engines": {
+    "node": ">=8.5"
+  },
+  "scripts": {
+    "test": "node --experimental-modules test/tests.mjs",
+    "examples": "node ./node_modules/.bin/http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kleinfreund/reverse-iterable-array.git"
+  },
+  "keywords": [
+    "array",
+    "reverse-iterable",
+    "iterable-iterator"
+  ],
+  "author": {
+    "name": "Philipp Rudloff",
+    "url": "https://kleinfreund.de"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kleinfreund/reverse-iterable-array/issues"
+  },
+  "homepage": "https://kleinfreund.github.io/reverse-iterable-array",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}
