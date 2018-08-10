@@ -126,9 +126,9 @@ function tests() {
   testRunner.assertEqual('valuesNext.done', true, valuesNext.done);
   console.groupEnd();
 
-  console.group('array.entries().reverse()');
-  const entriesReverse = array.entries().reverse();
-  console.info('> const entriesReverse = array.entries().reverse();');
+  console.group('array.entries().reverseIterator()');
+  const entriesReverse = array.entries().reverseIterator();
+  console.info('> const entriesReverse = array.entries().reverseIterator();');
   testRunner.assertHasOwnProperty('entriesReverse', 'next', entriesReverse);
   testRunner.assertHasOwnProperty('entriesReverse', Symbol.iterator, entriesReverse);
 

@@ -98,11 +98,11 @@ new ReverseIterableArray([iterable])
 ```js
 const array = new ReverseIterableArray([1, 2, 3]);
 
-for (const value of array.reverse()) {
+for (const value of array.reverseIterator()) {
   console.log(value);
 }
 
-[...array.reverse()]
+[...array.reverseIterator()]
 ```
 
 
@@ -111,7 +111,7 @@ for (const value of array.reverse()) {
 
 Returns an iterator containing the `[index, element]` pairs for each element in the `ReverseIterableArray` object in insertion order.
 
-An iterator containing the same pairs in reverse-insertion order can be obtained with `entries().reverse()`.
+An iterator containing the same pairs in reverse-insertion order can be obtained with `entries().reverseIterator()`.
 
 #### Syntax
 
@@ -146,7 +146,7 @@ array.forEachReverse(callback[, thisArg]);
 
 Returns an iterator containing the indices for each element in the `ReverseIterableArray` object in insertion order.
 
-An iterator containing the same indices in reverse-insertion order can be obtained with `keys().reverse()`.
+An iterator containing the same indices in reverse-insertion order can be obtained with `keys().reverseIterator()`.
 
 #### Syntax
 
@@ -172,7 +172,7 @@ array.reverseIterator();
 
 **Return value**:
 
-The array **reverse-iterator** function, which is the `values().reverse()` function by default.
+The array **reverse-iterator** function, which is the `values().reverseIterator()` function by default.
 
 
 
@@ -180,7 +180,7 @@ The array **reverse-iterator** function, which is the `values().reverse()` funct
 
 Returns an iterator containing the elements in the `ReverseIterableArray` object in insertion order.
 
-An iterator containing the same elements in reverse-insertion order can be obtained with `values().reverse()`.
+An iterator containing the same elements in reverse-insertion order can be obtained with `values().reverseIterator()`.
 
 #### Syntax
 
@@ -242,7 +242,7 @@ Returns an iterator containing the `[index, element]` pairs for each element in 
 
 This allows starting iteration at a specific element in the array.
 
-An iterator containing the same pairs in reverse-insertion order can be obtained with `iteratorFor(index).reverse()`.
+An iterator containing the same pairs in reverse-insertion order can be obtained with `iteratorFor(index).reverseIterator()`.
 
 #### Syntax
 

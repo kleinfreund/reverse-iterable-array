@@ -44,7 +44,7 @@ export class ReverseIterableArray extends Array {
    * @public
    */
   forEachReverse(callback, thisArg) {
-    for (const [index, currentValue] of this.entries().reverse()) {
+    for (const [index, currentValue] of this.entries().reverseIterator()) {
       callback(currentValue, index, thisArg ? thisArg : this);
     }
   }
@@ -74,9 +74,9 @@ export class ReverseIterableArray extends Array {
    * ```js
    * const array = new ReverseIterableArray();
    *
-   * [...array.reverse()];
+   * [...array.reverseIterator()];
    *
-   * for (const value of array.reverse()) {
+   * for (const value of array.reverseIterator()) {
    *   console.log(value);
    * }
    * ```
@@ -85,7 +85,7 @@ export class ReverseIterableArray extends Array {
    * @public
    */
   reverseIterator() {
-    return this.values().reverse();
+    return this.values().reverseIterator();
   }
 
   /**
@@ -168,13 +168,13 @@ export class ReverseIterableArray extends Array {
    */
   iterableIterator(getIteratorValue, startIndex = undefined) {
     let currentIndex = startIndex !== undefined ? startIndex : 0;
-    // Store the last array index because inside the reverse() method, `this` will be
+    // Store the last array index because inside the reverseIterator() method, `this` will be
     // bound to the `iterableIterator` method, not the `ReverseIterableArray` object.
     const lastIndex = this.length - 1;
     let nextStep = 1;
 
     return {
-      reverse() {
+      reverseIterator() {
         currentIndex = startIndex !== undefined ? startIndex : lastIndex;
         nextStep = -1;
         return this;

@@ -119,29 +119,29 @@ for (const value of array.reverseIterator()) {
   }
 
   printCommand(`
-for (const [index, value] of array.entries().reverse()) {
+for (const [index, value] of array.entries().reverseIterator()) {
   console.log(index, ":", value);
 }
   `);
-  for (const [index, value] of array.entries().reverse()) {
+  for (const [index, value] of array.entries().reverseIterator()) {
     printLog(index, ':', value);
   }
 
   printCommand(`
-for (const index of array.keys().reverse()) {
+for (const index of array.keys().reverseIterator()) {
   console.log(index);
 }
   `);
-  for (const index of array.keys().reverse()) {
+  for (const index of array.keys().reverseIterator()) {
     printLog(index);
   }
 
   printCommand(`
-for (const value of array.values().reverse()) {
+for (const value of array.values().reverseIterator()) {
   console.log(value);
 }
   `);
-  for (const value of array.values().reverse()) {
+  for (const value of array.values().reverseIterator()) {
     printLog(value);
   }
 
@@ -160,14 +160,14 @@ for (const value of array.values().reverse()) {
   printCommand('[...array.reverseIterator()]');
   printOutput([...array.reverseIterator()]);
 
-  printCommand('[...array.entries().reverse()]');
-  printOutput([...array.entries().reverse()]);
+  printCommand('[...array.entries().reverseIterator()]');
+  printOutput([...array.entries().reverseIterator()]);
 
-  printCommand('[...array.keys().reverse()]');
-  printOutput([...array.keys().reverse()]);
+  printCommand('[...array.keys().reverseIterator()]');
+  printOutput([...array.keys().reverseIterator()]);
 
-  printCommand('[...array.values().reverse()]');
-  printOutput([...array.values().reverse()]);
+  printCommand('[...array.values().reverseIterator()]');
+  printOutput([...array.values().reverseIterator()]);
 
   printCommand('array.length');
   printOutput(array.length);
@@ -184,8 +184,8 @@ for (const value of array.values().reverse()) {
   printCommand('[...array.values()]');
   printOutput([...array.values()]);
 
-  printCommand('const it = array.iteratorFor("key4").reverse();');
-  const it = array.iteratorFor(2).reverse();
+  printCommand('const it = array.iteratorFor("key4").reverseIterator();');
+  const it = array.iteratorFor(2).reverseIterator();
   printCommand('it.next().value;');
   printOutput(it.next().value);
   printCommand('it.next().value;');
