@@ -6,10 +6,10 @@ A reverse-iterable array implementation based on the built-in [Array](https://de
 
 ## Table of Contents
 
-* [Installation](#installation)
+* [Install](#install)
   * [ES Module](#es-module)
   * [Node.js package](#nodejs-package)
-* [Usage Examples](#usage-examples)
+* [Usage](#usage)
 * [Tests](#tests)
 * [Documentation](#documentation)
   * [`entries()`](#entries)
@@ -23,13 +23,29 @@ A reverse-iterable array implementation based on the built-in [Array](https://de
 
 
 
-## Installation
+## Install
 
 ### ES Module
+
+Download only the ES module file:
 
 ```shell
 curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/master/src/reverse-iterable-array.mjs
 ```
+
+### Node.js package
+
+*(Requires Node version 8.5 or higher for ES module support)*
+
+Installs the node package as a dependency. It doesn’t have any dependencies itself.
+
+```shell
+npm install --save reverse-iterable-array
+```
+
+Note, that Node.js version 8.5 or higher is required, as it comes with experimental support for ES modules. If you don’t want to use it as an ES module, you will need to transpile the package yourself.
+
+## Usage
 
 ```js
 import { ReverseIterableArray } from './src/reverse-iterable-array.mjs';
@@ -37,35 +53,12 @@ import { ReverseIterableArray } from './src/reverse-iterable-array.mjs';
 const array = new ReverseIterableArray();
 ```
 
-### Node.js package
+For more usage examples, have a look at [kleinfreund.github.io/reverse-iterable-array](https://kleinfreund.github.io/reverse-iterable-array).
 
-*(Requires Node version 8.5 or higher for ES module support)*
-
-Installs the node package as a dependency. It doesn’t have any non-development dependencies itself.
+You can also run the examples locally after cloning the repository:
 
 ```shell
-npm install --save reverse-iterable-array
-```
-
-```node
-import { ReverseIterableArray } from 'reverse-iterable-array';
-
-const array = new ReverseIterableArray();
-```
-
-Note, that Node.js version 8.5 or higher is required, as it comes with experimental support for ES modules. If you don’t want to use it as an ES module, you will need to transpile the package yourself.
-
-## Usage Examples
-
-You can have a look at some examples here: [kleinfreund.github.io/reverse-iterable-array](https://kleinfreund.github.io/reverse-iterable-array)
-
-Open the developer console to see the results of the test suite.
-
-Alternatively, run the examples locally after cloning this repository:
-
-```shell
-npm install
-npm run examples
+npm install && npm run examples
 ```
 
 
@@ -81,6 +74,8 @@ npm test
 
 
 ## Documentation
+
+A `ReverseIterableArray` object iterates its elements in insertion or reverse-insertion order — a [`for...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop returns the array’s elements for each iteration.
 
 ### `entries()`
 
