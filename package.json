@@ -1,6 +1,6 @@
 {
   "name": "reverse-iterable-array",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A reverse-iterable array implementation based on the built-in Array object",
   "main": "./src/reverse-iterable-array",
   "engines": {
