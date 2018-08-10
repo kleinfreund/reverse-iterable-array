@@ -12,6 +12,7 @@ A reverse-iterable array implementation based on the built-in [Array](https://de
 * [Usage](#usage)
 * [Tests](#tests)
 * [Documentation](#documentation)
+  * [Constructor](#constructor)
   * [`entries()`](#entries)
   * [`forEachReverse()`](#foreachreverse)
   * [`keys()`](#keys)
@@ -77,6 +78,35 @@ npm test
 
 A `ReverseIterableArray` object iterates its elements in insertion or reverse-insertion order — a [`for...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop returns the array’s elements for each iteration.
 
+
+
+### Constructor
+
+#### Syntax
+
+```
+new ReverseIterableArray([iterable])
+```
+
+**Parameters**:
+
+* `iterable`: An [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) object.
+
+#### Usage
+
+
+```js
+const array = new ReverseIterableArray([1, 2, 3]);
+
+for (const value of array.reverse()) {
+  console.log(value);
+}
+
+[...array.reverse()]
+```
+
+
+
 ### `entries()`
 
 Returns an iterator containing the `[index, element]` pairs for each element in the `ReverseIterableArray` object in insertion order.
@@ -93,6 +123,8 @@ array.entries();
 
 A new `ReverseIterableArray` iterator object.
 
+
+
 ### `forEachReverse()`
 
 The `forEachReverse()` method executes a provided function once per each `[index, element]` pair in the `ReverseIterableArray` object, in reverse-insertion order.
@@ -107,6 +139,8 @@ array.forEachReverse(callback[, thisArg]);
 
 * **callback**: Function to execute for each element.
 * **thisArg**: Value to use as `this` when executing `callback`.
+
+
 
 ### `keys()`
 
@@ -124,6 +158,8 @@ array.keys();
 
 A new `ReverseIterableArray` iterator object.
 
+
+
 ### `reverseIterator()`
 
 In theory, following the semantics of `[Symbol.iterator]()`, this should be `[Symbol.reverseIterator]()`. However, as a developer, I cannot define a well-known symbol myself and make use of it. In the future, the a proposal like [The ReverseIterable Interface, by Lee Byron](https://github.com/leebyron/ecmascript-reverse-iterable) might make it’s way into the specification. For the time being, the `reverseIterator()` function serves the same purpose.
@@ -137,6 +173,8 @@ array.reverseIterator();
 **Return value**:
 
 The array **reverse-iterator** function, which is the `values().reverse()` function by default.
+
+
 
 ### `values()`
 
@@ -153,6 +191,8 @@ array.values();
 **Return value**:
 
 A new `ReverseIterableArray` iterator object.
+
+
 
 ### `[Symbol.iterator]()`
 
@@ -188,9 +228,13 @@ iterator.next().value;
 //> undefined
 ```
 
+
+
 ### `[Symbol.toStringTag]()`
 
 The well-known symbol `Symbol.toStringTag` is accessed internally when callig `Object.prototype.toString()`.
+
+
 
 ### `iteratorFor()`
 
