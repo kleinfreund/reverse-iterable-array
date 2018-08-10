@@ -40,7 +40,7 @@ function printCommand(command) {
  * @param {Array} args
  */
 function printOutput(...args) {
-  const output = args.map(arg => Array.isArray(arg) ? stringify(arg) : String(arg));
+  const output = args.map(arg => stringify(arg));
   printCodeBlock(output.join(' '), 'output');
 }
 
@@ -84,7 +84,7 @@ for (const value of array) {
 
   printCommand(`
 for (const [index, value] of array.entries()) {
-  console.log(index, ':', value);
+  console.log(index, ":", value);
 }
   `);
   for (const [index, value] of array.entries()) {
@@ -120,7 +120,7 @@ for (const value of array.reverseIterator()) {
 
   printCommand(`
 for (const [index, value] of array.entries().reverse()) {
-  console.log(index, ':', value);
+  console.log(index, ":", value);
 }
   `);
   for (const [index, value] of array.entries().reverse()) {
@@ -197,7 +197,7 @@ for (const value of array.values().reverse()) {
 
   printCommand(`
 array.forEach((value, index) => {
-  console.log(index, ':', value);
+  console.log(index, ":", value);
 });
   `);
   array.forEach((value, index) => {
@@ -206,7 +206,7 @@ array.forEach((value, index) => {
 
   printCommand(`
 array.forEachReverse((value, index) => {
-  console.log(index, ':', value);
+  console.log(index, ":", value);
 });
   `);
   array.forEachReverse((value, index) => {
