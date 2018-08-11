@@ -71,6 +71,7 @@ function printCodeBlock(content, ...classNames) {
 function printExamples() {
   printCommand('const array = new ReverseIterableArray("1", "2", "3");');
   const array = new ReverseIterableArray('1', '2', '3');
+  printOutput(array);
 
   printCommand(`
 for (const value of array) {
@@ -179,26 +180,28 @@ for (const value of array.values().reverseIterator()) {
   printOutput(array.length);
 
   printCommand('array.push("4", "5", "6")');
-  array.push('4', '5', '6');
+  printOutput(array.push('4', '5', '6'));
 
   printCommand('[...array.values()]');
   printOutput([...array.values()]);
 
-  printCommand('const it = array.iteratorFor("key4").reverseIterator();');
+  printCommand('const it = array.iteratorFor("key4").reverseIterator()');
   const it = array.iteratorFor(2).reverseIterator();
-  printCommand('it.next().value;');
+  printOutput(it);
+
+  printCommand('it.next().value');
   printOutput(it.next().value);
-  printCommand('it.next().value;');
+  printCommand('it.next().value');
   printOutput(it.next().value);
-  printCommand('it.next().value;');
+  printCommand('it.next().value');
   printOutput(it.next().value);
-  printCommand('it.next().value;');
+  printCommand('it.next().value');
   printOutput(it.next().value);
 
   printCommand(`
 array.forEach((value, index) => {
   console.log(index, ":", value);
-});
+})
   `);
   array.forEach((value, index) => {
     printLog(index, ':', value);
@@ -207,7 +210,7 @@ array.forEach((value, index) => {
   printCommand(`
 array.forEachReverse((value, index) => {
   console.log(index, ":", value);
-});
+})
   `);
   array.forEachReverse((value, index) => {
     printLog(index, ':', value);
@@ -216,11 +219,21 @@ array.forEachReverse((value, index) => {
   printCommand('Object.prototype.toString.call(new ReverseIterableArray())');
   printOutput(Object.prototype.toString.call(new ReverseIterableArray()));
 
-  printCommand('const array2 = new ReverseIterableArray(7);');
+  document.body.insertAdjacentHTML('beforeend', '<hr>');
+
+  printCommand(`// array with 7 empty slots
+const array2 = new ReverseIterableArray(7)`);
   const array2 = new ReverseIterableArray(7);
+  printOutput(array2);
 
   printCommand('array2.length');
   printOutput(array2.length);
+
+  document.body.insertAdjacentHTML('beforeend', '<hr>');
+
+  printCommand('const array3 = new ReverseIterableArray(...document.querySelectorAll("script"))');
+  const array3 = new ReverseIterableArray(...document.querySelectorAll('script'));
+  printOutput(array3);
 }
 
 printExamples();
