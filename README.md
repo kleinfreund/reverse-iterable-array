@@ -105,15 +105,20 @@ new ReverseIterableArray([iterable])
 
 #### Usage
 
+```js
+const array = new ReverseIterableArray();
+```
+
+##### `Array`
 
 ```js
 const array = new ReverseIterableArray([1, 2, 3]);
+```
 
-for (const value of array.reverseIterator()) {
-  console.log(value);
-}
+##### `NodeList`
 
-[...array.reverseIterator()]
+```js
+const array = new ReverseIterableArray(...document.querySelectorAll('div'));
 ```
 
 
