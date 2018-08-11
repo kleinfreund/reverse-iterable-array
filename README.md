@@ -1,6 +1,11 @@
 # reverse-iterable-array
 
-A reverse-iterable array implementation based on the built-in [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) object.
+The `ReverseIterableArray` object is a reverse-iterable array implementation based on the built-in [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) object.
+
+See also:
+
+- `ReverseIterableMap`: [reverse-iterable-map](https://www.npmjs.com/package/reverse-iterable-map)
+- `ReverseIterableSet`: [reverse-iterable-set](https://www.npmjs.com/package/reverse-iterable-set)
 
 
 
