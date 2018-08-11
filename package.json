@@ -17,7 +17,8 @@
   "keywords": [
     "array",
     "reverse-iterable",
-    "iterable-iterator"
+    "iterable",
+    "iterator"
   ],
   "author": {
     "name": "Philipp Rudloff",
