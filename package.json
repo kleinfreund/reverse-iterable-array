@@ -1,7 +1,7 @@
 {
   "name": "reverse-iterable-array",
   "description": "A reverse-iterable array implementation based on the built-in Array object",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "./src/reverse-iterable-array.mjs",
   "module": "./src/reverse-iterable-array.mjs",
   "repository": "kleinfreund/reverse-iterable-array",
