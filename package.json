@@ -2,8 +2,6 @@
   "name": "reverse-iterable-array",
   "description": "A reverse-iterable array implementation based on the built-in Array object",
   "version": "1.1.2",
-  "main": "./src/reverse-iterable-array.mjs",
-  "module": "./src/reverse-iterable-array.mjs",
   "repository": "kleinfreund/reverse-iterable-array",
   "homepage": "https://kleinfreund.github.io/reverse-iterable-array",
   "author": {
@@ -11,6 +9,11 @@
     "url": "https://kleinfreund.de"
   },
   "license": "MIT",
+  "main": "./src/reverse-iterable-array.mjs",
+  "module": "./src/reverse-iterable-array.mjs",
+  "files": [
+    "src/"
+  ],
   "engines": {
     "node": ">=8.5"
   },
