@@ -3,7 +3,6 @@
   "description": "A reverse-iterable array implementation based on the built-in Array object",
   "version": "1.1.2",
   "repository": "kleinfreund/reverse-iterable-array",
-  "homepage": "https://kleinfreund.github.io/reverse-iterable-array",
   "author": {
     "name": "Philipp Rudloff",
     "url": "https://kleinfreund.de"

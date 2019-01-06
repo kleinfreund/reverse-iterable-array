@@ -6,7 +6,6 @@ Links:
 
 - [**npmjs.com**/package/reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
 - [**github.com**/kleinfreund/reverse-iterable-array](https://github.com/kleinfreund/reverse-iterable-array)
-- [kleinfreund.github.io/reverse-iterable-array](https://kleinfreund.github.io/reverse-iterable-array)
 
 See also:
 
@@ -65,13 +64,13 @@ import { ReverseIterableArray } from './src/reverse-iterable-array.mjs';
 const array = new ReverseIterableArray();
 ```
 
-For more usage examples, have a look at [kleinfreund.github.io/reverse-iterable-array](https://kleinfreund.github.io/reverse-iterable-array).
-
-You can also run the examples locally after cloning the repository:
+For more usage examples, clone the repository and run:
 
 ```shell
 npm install && npm run examples
 ```
+
+Then, open `http://127.0.0.1:8080` in your browser.
 
 
 
