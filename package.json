@@ -11,6 +11,7 @@
   "license": "MIT",
   "main": "./src/reverse-iterable-array.mjs",
   "module": "./src/reverse-iterable-array.mjs",
+  "sideEffects": false,
   "files": [
     "src/"
   ],
