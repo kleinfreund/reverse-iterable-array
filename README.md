@@ -41,7 +41,7 @@ See also:
 Download only the ES module file:
 
 ```shell
-curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/master/src/reverse-iterable-array.mjs
+curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/main/src/reverse-iterable-array.mjs
 ```
 
 ### Node.js package
