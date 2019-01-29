@@ -8,18 +8,36 @@
     "url": "https://kleinfreund.de"
   },
   "license": "MIT",
-  "main": "./src/reverse-iterable-array.mjs",
-  "module": "./src/reverse-iterable-array.mjs",
+  "main": "dist/cjs/reverse-iterable-array",
+  "module": "dist/esm/reverse-iterable-array.mjs",
   "sideEffects": false,
   "files": [
-    "src/"
+    "src",
+    "dist"
   ],
-  "engines": {
-    "node": ">=8.5"
-  },
   "scripts": {
-    "test": "node --experimental-modules tests/tests.mjs",
-    "examples": "node ./node_modules/.bin/http-server"
+    "prepublishOnly": "npm test",
+    "prepare": "npm run build",
+    "test": "nyc ava tests/*.js",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --module es2015 --outDir dist/esm && npm run rename-to-mjs",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "rename-to-mjs": "mv dist/esm/reverse-iterable-array.js dist/esm/reverse-iterable-array.mjs",
+    "examples": "npm run build && http-server"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ]
   },
   "keywords": [
     "array",
@@ -31,6 +49,10 @@
     "url": "https://github.com/kleinfreund/reverse-iterable-array/issues"
   },
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "ava": "^1.2.0",
+    "http-server": "^0.11.1",
+    "nyc": "^13.1.0",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.2.4"
   }
 }

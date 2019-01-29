@@ -1,4 +1,4 @@
-import { ReverseIterableArray } from '../src/reverse-iterable-array.mjs';
+import ReverseIterableArray from '../dist/esm/reverse-iterable-array.mjs';
 
 /**
  * Recursive algorithm to stringify arrays and their content in order to print them like dev tools.

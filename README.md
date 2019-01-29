@@ -16,70 +16,94 @@ See also:
 
 ## Table of Contents
 
-* [Install](#install)
-  * [ES Module](#es-module)
-  * [Node.js package](#nodejs-package)
-* [Usage](#usage)
-* [Tests](#tests)
-* [Documentation](#documentation)
-  * [Constructor](#constructor)
-  * [`entries()`](#entries)
-  * [`forEachReverse()`](#foreachreverse)
-  * [`keys()`](#keys)
-  * [`reverseIterator()`](#reverseiterator)
-  * [`values()`](#values)
-  * [`[Symbol.iterator]()`](#symboliterator)
-  * [`[Symbol.toStringTag]()`](#symboltostringtag)
-  * [`iteratorFor()`](#iteratorfor)
+- [Installation & usage](#installation--usage)
+- [Examples](#examples)
+- [Tests](#tests)
+- [Documentation](#documentation)
+  - [Constructor](#constructor)
+  - [`entries()`](#entries)
+  - [`forEachReverse()`](#foreachreverse)
+  - [`keys()`](#keys)
+  - [`reverseIterator()`](#reverseiterator)
+  - [`values()`](#values)
+  - [`[Symbol.iterator]()`](#symboliterator)
+  - [`[Symbol.toStringTag]()`](#symboltostringtag)
+  - [`iteratorFor()`](#iteratorfor)
 
 
 
-## Install
+## Installation & usage
 
-### ES Module
+### Browser
 
-Download only the ES module file:
+Download the ES module file …
 
-```shell
-curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/main/src/reverse-iterable-array.mjs
+```sh
+curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/main/dist/esm/reverse-iterable-array.mjs
 ```
 
-### Node.js package
-
-*(Requires Node version 8.5 or higher for ES module support)*
-
-Installs the node package as a dependency. It doesn’t have any dependencies itself.
-
-```shell
-npm install --save reverse-iterable-array
-```
-
-Note, that Node.js version 8.5 or higher is required, as it comes with experimental support for ES modules. If you don’t want to use it as an ES module, you will need to transpile the package yourself.
-
-## Usage
+… and import it like this:
 
 ```js
-import { ReverseIterableArray } from './src/reverse-iterable-array.mjs';
+import ReverseIterableArray from 'reverse-iterable-array.mjs';
 
 const array = new ReverseIterableArray();
 ```
 
-For more usage examples, clone the repository and run:
+### Node
 
-```shell
+Install the node package as a dependency …
+
+```sh
+npm install --save reverse-iterable-array
+```
+
+… and import it like this:
+
+- CommonJS module
+
+  ```node
+  const ReverseIterableArray = require('reverse-iterable-array').default;
+
+  const array = new ReverseIterableArray();
+  ```
+
+- ES module
+
+  ```js
+  import ReverseIterableArray from 'reverse-iterable-array/dist/esm/reverse-iterable-array';
+
+  const array = new ReverseIterableArray();
+  ```
+
+- TypeScript module
+
+  ```ts
+  import ReverseIterableArray from 'reverse-iterable-array/src/reverse-iterable-array';
+
+  const array = new ReverseIterableArray();
+  ```
+
+
+
+## Examples
+
+For some live usage examples, clone the repository and run the following:
+
+```sh
 npm install && npm run examples
 ```
 
-Then, open `http://127.0.0.1:8080/examples` in your browser.
+Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browser.
 
 
 
 ## Tests
 
-**… with Node’s experimental ES module feature**:
+In order to run the tests, clone the repository and run the following:
 
-```shell
-npm test
+```sh
+npm install && npm test
 ```
 
 
@@ -100,25 +124,30 @@ new ReverseIterableArray([iterable])
 
 **Parameters**:
 
-* `iterable`: An [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) object.
+- `iterable`: An [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) object.
 
 #### Usage
 
-```js
-const array = new ReverseIterableArray();
-```
+- Without arguments
 
-##### `Array`
+  ```js
+  const array = new ReverseIterableArray();
+  //> Array []
+  ```
 
-```js
-const array = new ReverseIterableArray([1, 2, 3]);
-```
+- With multiple elements
 
-##### `NodeList`
+  ```js
+  const array = new ReverseIterableArray(1, 2, 3);
+  //> Array(3) [ 1, 2, 3 ]
+  ```
 
-```js
-const array = new ReverseIterableArray(...document.querySelectorAll('div'));
-```
+- With a single length argument
+
+  ```js
+  const array = new ReverseIterableArray(7);
+  //> Array(7) [ <7 empty slots> ]
+  ```
 
 
 
@@ -138,6 +167,26 @@ array.entries();
 
 A new `ReverseIterableArray` iterator object.
 
+#### Usage
+
+```js
+const array = new ReverseIterableArray(1, 2, 4);
+
+const iterator = array.entries();
+
+iterator.next().value;
+//> [0, 1]
+
+iterator.next().value;
+//> [1, 2]
+
+iterator.next().value;
+//> [2, 4]
+
+iterator.next().value;
+//> undefined
+```
+
 
 
 ### `forEachReverse()`
@@ -152,8 +201,28 @@ array.forEachReverse(callback[, thisArg]);
 
 **Parameters**:
 
-* **callback**: Function to execute for each element.
-* **thisArg**: Value to use as `this` when executing `callback`.
+- **callback**: Function to execute for each element.
+- **thisArg**: Value to use as `this` when executing `callback`.
+
+#### Usage
+
+```js
+const array = new ReverseIterableArray('a', 'b', 'c');
+
+array.forEachReverse(value => {
+  console.log(value);
+});
+//> c
+//> b
+//> a
+
+array.forEachReverse(function (value, key, arrayReference) {
+  console.log(key, value, arrayReference.size);
+});
+//> 2 c 3
+//> 1 b 3
+//> 0 a 3
+```
 
 
 
@@ -173,6 +242,26 @@ array.keys();
 
 A new `ReverseIterableArray` iterator object.
 
+#### Usage
+
+```js
+const array = new ReverseIterableArray(1, 2, 4);
+
+const iterator = array.keys();
+
+iterator.next().value;
+//> 0
+
+iterator.next().value;
+//> 1
+
+iterator.next().value;
+//> 2
+
+iterator.next().value;
+//> undefined
+```
+
 
 
 ### `reverseIterator()`
@@ -188,6 +277,26 @@ array.reverseIterator();
 **Return value**:
 
 The array **reverse-iterator** function, which is the `values().reverseIterator()` function by default.
+
+#### Usage
+
+```js
+const array = new ReverseIterableArray(1, 2, 4);
+
+const iterator = array.reverseIterator();
+
+iterator.next().value;
+//> [2, 4]
+
+iterator.next().value;
+//> [1, 2]
+
+iterator.next().value;
+//> [0, 1]
+
+iterator.next().value;
+//> undefined
+```
 
 
 
@@ -206,6 +315,26 @@ array.values();
 **Return value**:
 
 A new `ReverseIterableArray` iterator object.
+
+#### Usage
+
+```js
+const array = new ReverseIterableArray(1, 2, 4);
+
+const iterator = array.values();
+
+iterator.next().value;
+//> 1
+
+iterator.next().value;
+//> 2
+
+iterator.next().value;
+//> 4
+
+iterator.next().value;
+//> undefined
+```
 
 
 
@@ -249,6 +378,15 @@ iterator.next().value;
 
 The well-known symbol `Symbol.toStringTag` is accessed internally when callig `Object.prototype.toString()`.
 
+#### Usage
+
+```js
+const array = new ReverseIterableArray();
+
+Object.prototype.toString.call(array)
+//> [object ReverseIterableArray]
+```
+
 
 
 ### `iteratorFor()`
@@ -267,8 +405,38 @@ array.iteratorFor(index);
 
 **Parameters**:
 
-* **index**: Required. The index of the element to start iterating from.
+- **index**: Required. The index of the element to start iterating from.
 
 **Return value**:
 
 A new `ReverseIterableArray` iterator object.
+
+#### Usage
+
+```js
+const array = new ReverseIterableArray('a', 'b', 'c');
+
+// Iterator, starting at the element with key 1.
+const iterator = array.iteratorFor(1);
+
+iterator.next().value;
+//> [1, 'b']
+
+iterator.next().value;
+//> [2, 'c']
+
+iterator.next().value;
+//> undefined
+
+// Reverse-iterator, starting at the element with key 1.
+const reverseIterator = array.iteratorFor(1).reverseIterator();
+
+reverseIterator.next().value;
+//> [1, 'c']
+
+reverseIterator.next().value;
+//> [0, 'a']
+
+reverseIterator.next().value;
+//> undefined
+```
