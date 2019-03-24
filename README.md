@@ -21,14 +21,14 @@ See also:
 - [Tests](#tests)
 - [Documentation](#documentation)
   - [Constructor](#constructor)
+  - [`[Symbol.toStringTag]`](#symboltostringtag)
   - [`entries()`](#entries)
   - [`forEachReverse()`](#foreachreverse)
+  - [`iteratorFor()`](#iteratorfor)
   - [`keys()`](#keys)
   - [`reverseIterator()`](#reverseiterator)
   - [`values()`](#values)
   - [`[Symbol.iterator]()`](#symboliterator)
-  - [`[Symbol.toStringTag]()`](#symboltostringtag)
-  - [`iteratorFor()`](#iteratorfor)
 
 
 
@@ -151,6 +151,12 @@ new ReverseIterableArray([iterable])
 
 
 
+### `[Symbol.toStringTag]`
+
+The `ReverseIterableArray[@@toStringTag]` property has an initial value of “ReverseIterableArray”.
+
+
+
 ### `entries()`
 
 Returns an iterator containing the `[index, element]` pairs for each element in the `ReverseIterableArray` object in insertion order.
@@ -222,6 +228,60 @@ array.forEachReverse(function (value, key, arrayReference) {
 //> 2 c 3
 //> 1 b 3
 //> 0 a 3
+```
+
+
+
+### `iteratorFor()`
+
+Returns an iterator containing the `[index, element]` pairs for each element in the `ReverseIterableArray` object in insertion order **starting with the pair specified by the `index` parameter**.
+
+This allows starting iteration at a specific element in the array.
+
+An iterator containing the same pairs in reverse-insertion order can be obtained with `iteratorFor(index).reverseIterator()`.
+
+#### Syntax
+
+```
+array.iteratorFor(index);
+```
+
+**Parameters**:
+
+- **index**: Required. The index of the element to start iterating from.
+
+**Return value**:
+
+A new `ReverseIterableArray` iterator object.
+
+#### Usage
+
+```js
+const array = new ReverseIterableArray('a', 'b', 'c');
+
+// Iterator, starting at the element with key 1.
+const iterator = array.iteratorFor(1);
+
+iterator.next().value;
+//> [1, 'b']
+
+iterator.next().value;
+//> [2, 'c']
+
+iterator.next().value;
+//> undefined
+
+// Reverse-iterator, starting at the element with key 1.
+const reverseIterator = array.iteratorFor(1).reverseIterator();
+
+reverseIterator.next().value;
+//> [1, 'c']
+
+reverseIterator.next().value;
+//> [0, 'a']
+
+reverseIterator.next().value;
+//> undefined
 ```
 
 
@@ -385,58 +445,4 @@ const array = new ReverseIterableArray();
 
 Object.prototype.toString.call(array)
 //> [object ReverseIterableArray]
-```
-
-
-
-### `iteratorFor()`
-
-Returns an iterator containing the `[index, element]` pairs for each element in the `ReverseIterableArray` object in insertion order **starting with the pair specified by the `index` parameter**.
-
-This allows starting iteration at a specific element in the array.
-
-An iterator containing the same pairs in reverse-insertion order can be obtained with `iteratorFor(index).reverseIterator()`.
-
-#### Syntax
-
-```
-array.iteratorFor(index);
-```
-
-**Parameters**:
-
-- **index**: Required. The index of the element to start iterating from.
-
-**Return value**:
-
-A new `ReverseIterableArray` iterator object.
-
-#### Usage
-
-```js
-const array = new ReverseIterableArray('a', 'b', 'c');
-
-// Iterator, starting at the element with key 1.
-const iterator = array.iteratorFor(1);
-
-iterator.next().value;
-//> [1, 'b']
-
-iterator.next().value;
-//> [2, 'c']
-
-iterator.next().value;
-//> undefined
-
-// Reverse-iterator, starting at the element with key 1.
-const reverseIterator = array.iteratorFor(1).reverseIterator();
-
-reverseIterator.next().value;
-//> [1, 'c']
-
-reverseIterator.next().value;
-//> [0, 'a']
-
-reverseIterator.next().value;
-//> undefined
 ```
