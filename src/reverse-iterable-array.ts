@@ -13,7 +13,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol
    */
-  constructor(...arrayLengthOrElements: T[]) {
+  constructor(...arrayLengthOrElements: ReadonlyArray<T>) {
     super(...arrayLengthOrElements)
   }
 
@@ -36,7 +36,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
    * @param callbackfn
    * @param [thisArg]
    */
-  forEachReverse(callbackfn: (value: T, index: number, map: T[]) => void, thisArg?: any) {
+  forEachReverse(callbackfn: (value: T, index: number, array: ReverseIterableArray<T>) => void, thisArg?: any) {
     for (const [index, value] of this.entries().reverseIterator()) {
       callbackfn.call(thisArg, value, index, this);
     }
