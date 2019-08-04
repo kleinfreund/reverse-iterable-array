@@ -34,9 +34,12 @@ export default class ReverseIterableArray<T> extends Array<T> {
    * the `ReverseIterableArray` object, in reverse insertion order.
    *
    * @param callbackfn
-   * @param [thisArg]
+   * @param thisArg
    */
-  forEachReverse(callbackfn: (value: T, index: number, array: ReverseIterableArray<T>) => void, thisArg?: any) {
+  forEachReverse(
+    callbackfn: (value: T, index: number, array: ReverseIterableArray<T>) => void,
+    thisArg?: any
+  ) {
     for (const [index, value] of this.entries().reverseIterator()) {
       callbackfn.call(thisArg, value, index, this);
     }
@@ -92,7 +95,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
    *
    * @returns The string tag of the `ReverseIterableArray` class.
    */
-  get [Symbol.toStringTag](): string {
+  get [Symbol.toStringTag]() {
     return 'ReverseIterableArray';
   }
 
@@ -128,11 +131,10 @@ export default class ReverseIterableArray<T> extends Array<T> {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
    *
    * @param getIteratorValue
-   * @param [startIndex] Index of the element to start iterating from
+   * @param startIndex Index of the element to start iterating from
    * @returns a reverse-iterable iterator
-   * @private
    */
-  _iterableIterator(
+  private _iterableIterator(
     getIteratorValue: (index: number) => [number, T] | number | T,
     startIndex?: number
   ): ReverseIterableIterator<any> {
