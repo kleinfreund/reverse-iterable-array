@@ -71,7 +71,7 @@ npm install --save reverse-iterable-array
 - ES module
 
   ```js
-  import ReverseIterableArray from 'reverse-iterable-array/dist/esm/reverse-iterable-array';
+  import ReverseIterableArray from 'reverse-iterable-array/dist/esm/reverse-iterable-array.mjs';
 
   const array = new ReverseIterableArray();
   ```
