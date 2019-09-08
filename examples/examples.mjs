@@ -1,43 +1,14 @@
 import ReverseIterableArray from '../dist/esm/reverse-iterable-array.mjs';
 
 /**
- * Recursive algorithm to stringify arrays and their content in order to print them like dev tools.
- *
- * ```js
- * stringify(['1', '2', '3'])
- * //> [ "1", "2", "3" ]
- *
- * stringify([1, '2', undefined, '3', [4, 5, 6]])
- * //> [ 1, "2", undefined, "3", [ 4, 5, 6 ] ]
- * ```
- *
- * @param {*} input
- * @returns {String}
- */
-function stringify(input) {
-  if (Array.isArray(input)) {
-    const stringArray = [];
-    for (const element of input) {
-      stringArray.push(stringify(element));
-    }
-
-    return `[ ${stringArray.join(', ')} ]`;
-  } else if (typeof input === 'string') {
-    return `"${input}"`;
-  }
-
-  return String(input);
-}
-
-/**
- * @param {String} command
+ * @param {string} command
  */
 function printCommand(command) {
   printCodeBlock(command, 'command');
 }
 
 /**
- * @param {Array} args
+ * @param {any[]} args
  */
 function printOutput(...args) {
   const output = args.map(arg => stringify(arg));
@@ -45,16 +16,8 @@ function printOutput(...args) {
 }
 
 /**
- * @param {Array} args
- */
-function printLog(...args) {
-  const output = args.map(arg => Array.isArray(arg) ? stringify(arg) : String(arg));
-  printCodeBlock(output.join(' '), 'log');
-}
-
-/**
- * @param {String} content
- * @param {Array<String>} classNames
+ * @param {string} content
+ * @param {string[]} classNames
  */
 function printCodeBlock(content, ...classNames) {
   let concatenatedLines = '';
@@ -66,6 +29,38 @@ function printCodeBlock(content, ...classNames) {
     'beforeend',
     `<pre class="${classNames.join(' ')}">${concatenatedLines}</pre>`
   );
+}
+
+/**
+ * Recursive algorithm to stringify arrays and their content in order to print them like dev tools.
+ *
+ * ```js
+ * stringify(['1', '2', '3'])
+ * //> [ "1", "2", "3" ]
+ *
+ * stringify([1, '2', undefined, '3', [4, 5, 6]])
+ * //> [ 1, "2", undefined, "3", [ 4, 5, 6 ] ]
+ * ```
+ *
+ * @param {any} input
+ * @returns {string}
+ */
+function stringify(input) {
+  if (Array.isArray(input)) {
+    return `[ ${input.map(element => stringify(element)).join(', ')} ]`;
+  } else if (typeof input === 'string') {
+    return `"${input}"`;
+  }
+
+  return String(input);
+}
+
+/**
+ * @param {any[]} args
+ */
+function printLog(...args) {
+  const output = args.map(arg => Array.isArray(arg) ? stringify(arg) : String(arg));
+  printCodeBlock(output.join(' '), 'log');
 }
 
 function printExamples() {

@@ -151,10 +151,12 @@ export default class ReverseIterableArray<T> extends Array<T> {
 
         return this;
       },
+
       [Symbol.iterator]() {
         // Return the iterable itself.
         return this;
       },
+
       next() {
         let value;
 
