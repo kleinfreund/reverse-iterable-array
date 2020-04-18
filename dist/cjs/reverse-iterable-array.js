@@ -33,7 +33,7 @@ class ReverseIterableArray extends Array {
      * the `ReverseIterableArray` object, in reverse insertion order.
      *
      * @param callbackfn
-     * @param [thisArg]
+     * @param thisArg
      */
     forEachReverse(callbackfn, thisArg) {
         for (const [index, value] of this.entries().reverseIterator()) {
@@ -117,9 +117,8 @@ class ReverseIterableArray extends Array {
      * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
      *
      * @param getIteratorValue
-     * @param [startIndex] Index of the element to start iterating from
+     * @param startIndex Index of the element to start iterating from
      * @returns a reverse-iterable iterator
-     * @private
      */
     _iterableIterator(getIteratorValue, startIndex) {
         let currentIndex = startIndex !== undefined ? startIndex : 0;
