@@ -1,5 +1,5 @@
 import test from 'ava';
-import ReverseIterableArray from '../src/reverse-iterable-array';
+import ReverseIterableArray from './reverse-iterable-array';
 
 test('Construct array without argument', t => {
   const array = new ReverseIterableArray();
