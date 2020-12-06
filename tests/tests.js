@@ -25,6 +25,15 @@ test('Construct array with list of numbers', t => {
   t.is(array[2], 3);
 });
 
+test('Construct array with array of numbers', t => {
+  const array = new ReverseIterableArray([1, 2, 3]);
+
+  t.is(array.length, 3, 'Array has three elements.');
+  t.is(array[0], 1);
+  t.is(array[1], 2);
+  t.is(array[2], 3);
+});
+
 test('Construct array with list of strings', t => {
   const array = new ReverseIterableArray('a', 'b', 'c');
 

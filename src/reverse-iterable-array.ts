@@ -13,8 +13,9 @@ export default class ReverseIterableArray<T> extends Array<T> {
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol
    */
-  constructor(...arrayLengthOrElements: ReadonlyArray<T>) {
-    super(...arrayLengthOrElements)
+  constructor(...arrayLengthOrElements: Array<Array<T>> | Array<T>) {
+    const arrayArgument = Array.isArray(arguments[0]) ? arguments[0] : arrayLengthOrElements
+    super(...arrayArgument)
   }
 
   /**
