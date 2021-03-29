@@ -31,7 +31,7 @@
   "scripts": {
     "prepublishOnly": "npm test",
     "prepack": "npm run build",
-    "test": "nyc ava **/*.test.js",
+    "test": "jest",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module es2015 --outDir dist/esm && npm run rename-to-mjs",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
@@ -39,24 +39,10 @@
     "examples": "npm run build && http-server"
   },
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
-    "ava": "^3.15.0",
+    "@types/jest": "^26.0.22",
     "http-server": "^0.12.3",
-    "nyc": "^15.1.0",
-    "ts-node": "^9.1.1",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
     "typescript": "^4.2.3"
-  },
-  "ava": {
-    "babel": {
-      "compileEnhancements": false
-    },
-    "require": [
-      "ts-node/register"
-    ]
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ]
   }
 }
