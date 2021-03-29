@@ -1,20 +1,33 @@
 {
   "name": "reverse-iterable-array",
-  "description": "A reverse-iterable array implementation based on the built-in Array object",
   "version": "4.0.0",
-  "repository": "kleinfreund/reverse-iterable-array",
+  "license": "MIT",
+  "description": "A reverse-iterable array implementation based on the built-in Array object",
   "author": {
     "name": "Philipp Rudloff",
     "url": "https://kleinfreund.de"
   },
-  "license": "MIT",
+  "homepage": "https://github.com/kleinfreund/reverse-iterable-array",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kleinfreund/reverse-iterable-array.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kleinfreund/reverse-iterable-array/issues"
+  },
+  "keywords": [
+    "array",
+    "reverse-iterable",
+    "iterable",
+    "iterator"
+  ],
   "main": "dist/cjs/reverse-iterable-array",
   "module": "dist/esm/reverse-iterable-array.mjs",
-  "sideEffects": false,
   "files": [
     "src",
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "prepublishOnly": "npm test",
     "prepack": "npm run build",
@@ -24,6 +37,14 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "rename-to-mjs": "mv dist/esm/reverse-iterable-array.js dist/esm/reverse-iterable-array.mjs",
     "examples": "npm run build && http-server"
+  },
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "ava": "^3.15.0",
+    "http-server": "^0.12.3",
+    "nyc": "^15.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
   },
   "ava": {
     "babel": {
@@ -37,22 +58,5 @@
     "extension": [
       ".ts"
     ]
-  },
-  "keywords": [
-    "array",
-    "reverse-iterable",
-    "iterable",
-    "iterator"
-  ],
-  "bugs": {
-    "url": "https://github.com/kleinfreund/reverse-iterable-array/issues"
-  },
-  "devDependencies": {
-    "@ava/babel": "^1.0.1",
-    "ava": "^3.15.0",
-    "http-server": "^0.12.3",
-    "nyc": "^15.1.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
   }
 }
