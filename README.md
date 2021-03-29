@@ -37,16 +37,16 @@ See also:
 
 ### Browser
 
-Download the ES module file …
+Download the UMD bundle file …
 
 ```sh
-curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/main/dist/esm/reverse-iterable-array.mjs
+curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/main/dist/reverse-iterable-array.js
 ```
 
 … and import it like this:
 
 ```js
-import ReverseIterableArray from 'reverse-iterable-array.mjs';
+const ReverseIterableArray = window.ReverseIterableArray.default
 
 const array = new ReverseIterableArray();
 ```
@@ -61,29 +61,11 @@ npm install reverse-iterable-array
 
 … and import it like this:
 
-- CommonJS module
+```node
+const ReverseIterableArray = require('reverse-iterable-array').default;
 
-  ```node
-  const ReverseIterableArray = require('reverse-iterable-array').default;
-
-  const array = new ReverseIterableArray();
-  ```
-
-- ES module
-
-  ```js
-  import ReverseIterableArray from 'reverse-iterable-array/dist/esm/reverse-iterable-array.mjs';
-
-  const array = new ReverseIterableArray();
-  ```
-
-- TypeScript module
-
-  ```ts
-  import ReverseIterableArray from 'reverse-iterable-array/src/reverse-iterable-array';
-
-  const array = new ReverseIterableArray();
-  ```
+const array = new ReverseIterableArray();
+```
 
 
 

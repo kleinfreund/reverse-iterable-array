@@ -21,18 +21,17 @@
     "iterable",
     "iterator"
   ],
-  "main": "./dist/cjs/reverse-iterable-array",
-  "module": "./dist/esm/reverse-iterable-array.mjs",
+  "exports": "./dist/reverse-iterable-array.js",
+  "main": "./dist/reverse-iterable-array.js",
+  "module": "./dist/reverse-iterable-array.js",
   "files": [
     "src",
     "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc --module es2015 --outDir dist/esm && npm run rename-to-mjs",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "rename-to-mjs": "mv dist/esm/reverse-iterable-array.js dist/esm/reverse-iterable-array.mjs",
+    "build": "NODE_ENV=production rollup --config",
+    "prebuild": "npm run test",
     "test": "jest",
     "start": "npm run build && http-server",
     "prestart": "npm run build",
@@ -40,9 +39,11 @@
     "prepublishOnly": "npm run test"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.2.1",
     "@types/jest": "^26.0.22",
     "http-server": "^0.12.3",
     "jest": "^26.6.3",
+    "rollup-plugin-terser": "^7.0.2",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3"
   }

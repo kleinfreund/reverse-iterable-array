@@ -1,4 +1,4 @@
-import ReverseIterableArray from '../dist/esm/reverse-iterable-array.mjs';
+const ReverseIterableArray = window.ReverseIterableArray.default
 
 /**
  * @param {string} command
