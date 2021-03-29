@@ -5,6 +5,7 @@ The `ReverseIterableArray` object is a reverse-iterable array implementation bas
 Links:
 
 - [**npmjs.com**/package/reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
+  - [on BundlePhobia](https://bundlephobia.com/result?p=reverse-iterable-array)
 - [**github.com**/kleinfreund/reverse-iterable-array](https://github.com/kleinfreund/reverse-iterable-array)
 
 See also:
@@ -55,7 +56,7 @@ const array = new ReverseIterableArray();
 Install the node package as a dependency …
 
 ```sh
-npm install --save reverse-iterable-array
+npm install reverse-iterable-array
 ```
 
 … and import it like this:
@@ -91,7 +92,8 @@ npm install --save reverse-iterable-array
 For some live usage examples, clone the repository and run the following:
 
 ```sh
-npm install && npm run examples
+npm install
+npm start
 ```
 
 Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browser.
@@ -103,7 +105,8 @@ Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browse
 In order to run the tests, clone the repository and run the following:
 
 ```sh
-npm install && npm test
+npm install
+npm test
 ```
 
 
