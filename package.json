@@ -1,6 +1,6 @@
 {
   "name": "reverse-iterable-array",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "license": "MIT",
   "description": "A reverse-iterable array implementation based on the built-in Array object",
   "author": {
