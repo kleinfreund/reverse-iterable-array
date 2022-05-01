@@ -17,7 +17,8 @@ See also:
 
 ## Table of Contents
 
-- [Installation & usage](#installation--usage)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Examples](#examples)
 - [Tests](#tests)
 - [Documentation](#documentation)
@@ -33,36 +34,18 @@ See also:
 
 
 
-## Installation & usage
-
-### Browser
-
-Download the UMD bundle file …
-
-```sh
-curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-array/main/dist/reverse-iterable-array.js
-```
-
-… and import it like this:
-
-```js
-const ReverseIterableArray = window.ReverseIterableArray.default
-
-const array = new ReverseIterableArray();
-```
-
-### Node
-
-Install the node package as a dependency …
+## Installation
 
 ```sh
 npm install reverse-iterable-array
 ```
 
-… and import it like this:
 
-```node
-const ReverseIterableArray = require('reverse-iterable-array').default;
+
+## Usage
+
+```js
+import ReverseIterableArray from 'reverse-iterable-array';
 
 const array = new ReverseIterableArray();
 ```
@@ -75,6 +58,7 @@ For some live usage examples, clone the repository and run the following:
 
 ```sh
 npm install
+npm run build
 npm start
 ```
 

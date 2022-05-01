@@ -1,4 +1,6 @@
-const ReverseIterableArray = window.ReverseIterableArray.default
+import ReverseIterableArray from '../dist/reverse-iterable-array.js';
+
+Object.defineProperty(window, 'ReverseIterableArray', { value: ReverseIterableArray });
 
 /**
  * @param {string} command
@@ -11,7 +13,7 @@ function printCommand(command) {
  * @param {any[]} args
  */
 function printOutput(...args) {
-  const output = args.map(arg => stringify(arg));
+  const output = args.map((arg) => stringify(arg));
   printCodeBlock(output.join(' '), 'output');
 }
 
@@ -59,7 +61,7 @@ function stringify(input) {
  * @param {any[]} args
  */
 function printLog(...args) {
-  const output = args.map(arg => Array.isArray(arg) ? stringify(arg) : String(arg));
+  const output = args.map((arg) => Array.isArray(arg) ? stringify(arg) : String(arg));
   printCodeBlock(output.join(' '), 'log');
 }
 

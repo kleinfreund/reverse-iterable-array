@@ -25,7 +25,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
    */
   entries(): ReverseIterableIterator<[number, T]> {
-    const getIteratorValue = (index: number): [number, T] => [index, this[index]];
+    const getIteratorValue = (index: number): [number, T] => [index, this[index] as T];
 
     return this._iterableIterator(getIteratorValue);
   }
@@ -74,7 +74,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
    */
   values(): ReverseIterableIterator<T> {
-    const getIteratorValue = (index: number): T => this[index];
+    const getIteratorValue = (index: number): T => this[index] as T;
 
     return this._iterableIterator(getIteratorValue);
   }
@@ -110,7 +110,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
    * @param index The index of the element to start iterating from.
    */
   iteratorFor(index: number): ReverseIterableIterator<[number, T]> {
-    const getIteratorValue = (index: number): [number, T] => [index, this[index]];
+    const getIteratorValue = (index: number): [number, T] => [index, this[index] as T];
 
     return this._iterableIterator(getIteratorValue, index);
   }
