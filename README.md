@@ -5,15 +5,13 @@ The `ReverseIterableArray` object is a reverse-iterable array implementation bas
 Links:
 
 - [**npmjs.com**/package/reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
-  - [on BundlePhobia](https://bundlephobia.com/result?p=reverse-iterable-array)
+	- [on BundlePhobia](https://bundlephobia.com/result?p=reverse-iterable-array)
 - [**github.com**/kleinfreund/reverse-iterable-array](https://github.com/kleinfreund/reverse-iterable-array)
 
 See also:
 
 - `ReverseIterableMap`: [reverse-iterable-map](https://www.npmjs.com/package/reverse-iterable-map)
 - `ReverseIterableSet`: [reverse-iterable-set](https://www.npmjs.com/package/reverse-iterable-set)
-
-
 
 ## Table of Contents
 
@@ -22,25 +20,21 @@ See also:
 - [Examples](#examples)
 - [Tests](#tests)
 - [Documentation](#documentation)
-  - [Constructor](#constructor)
-  - [`[Symbol.toStringTag]`](#symboltostringtag)
-  - [`entries()`](#entries)
-  - [`forEachReverse()`](#foreachreverse)
-  - [`iteratorFor()`](#iteratorfor)
-  - [`keys()`](#keys)
-  - [`reverseIterator()`](#reverseiterator)
-  - [`values()`](#values)
-  - [`[Symbol.iterator]()`](#symboliterator)
+	- [Constructor](#constructor)
+	- [`[Symbol.toStringTag]`](#symboltostringtag)
+	- [`entries()`](#entries)
+	- [`forEachReverse()`](#foreachreverse)
+	- [`iteratorFor()`](#iteratorfor)
+	- [`keys()`](#keys)
+	- [`reverseIterator()`](#reverseiterator)
+	- [`values()`](#values)
+	- [`[Symbol.iterator]()`](#symboliterator)
 
-
-
-## Installation
+	## Installation
 
 ```sh
 npm install reverse-iterable-array
 ```
-
-
 
 ## Usage
 
@@ -49,8 +43,6 @@ import ReverseIterableArray from 'reverse-iterable-array';
 
 const array = new ReverseIterableArray();
 ```
-
-
 
 ## Examples
 
@@ -64,8 +56,6 @@ npm start
 
 Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browser.
 
-
-
 ## Tests
 
 In order to run the tests, clone the repository and run the following:
@@ -75,13 +65,9 @@ npm install
 npm test
 ```
 
-
-
 ## Documentation
 
 A `ReverseIterableArray` object iterates its elements in insertion or reverse-insertion order — a [`for...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop returns the array’s elements for each iteration.
-
-
 
 ### Constructor
 
@@ -99,32 +85,28 @@ new ReverseIterableArray([iterable])
 
 - Without arguments
 
-  ```js
-  const array = new ReverseIterableArray();
-  //> Array []
-  ```
+	```js
+	const array = new ReverseIterableArray();
+	//> Array []
+	```
 
 - With multiple elements
 
-  ```js
-  const array = new ReverseIterableArray(1, 2, 3);
-  //> Array(3) [ 1, 2, 3 ]
-  ```
+	```js
+	const array = new ReverseIterableArray(1, 2, 3);
+	//> Array(3) [ 1, 2, 3 ]
+	```
 
 - With a single length argument
 
-  ```js
-  const array = new ReverseIterableArray(7);
-  //> Array(7) [ <7 empty slots> ]
-  ```
+	```js
+	const array = new ReverseIterableArray(7);
+	//> Array(7) [ <7 empty slots> ]
+	```
 
-
-
-### `[Symbol.toStringTag]`
+	### `[Symbol.toStringTag]`
 
 The `ReverseIterableArray[@@toStringTag]` property has an initial value of “ReverseIterableArray”.
-
-
 
 ### `entries()`
 
@@ -162,8 +144,6 @@ iterator.next().value;
 //> undefined
 ```
 
-
-
 ### `forEachReverse()`
 
 The `forEachReverse()` method executes a provided function once per each `[index, element]` pair in the `ReverseIterableArray` object, in reverse-insertion order.
@@ -185,21 +165,19 @@ array.forEachReverse(callback[, thisArg]);
 const array = new ReverseIterableArray('a', 'b', 'c');
 
 array.forEachReverse(value => {
-  console.log(value);
+	console.log(value);
 });
 //> c
 //> b
 //> a
 
 array.forEachReverse(function (value, key, arrayReference) {
-  console.log(key, value, arrayReference.size);
+	console.log(key, value, arrayReference.size);
 });
 //> 2 c 3
 //> 1 b 3
 //> 0 a 3
 ```
-
-
 
 ### `iteratorFor()`
 
@@ -253,8 +231,6 @@ reverseIterator.next().value;
 //> undefined
 ```
 
-
-
 ### `keys()`
 
 Returns an iterator containing the indices for each element in the `ReverseIterableArray` object in insertion order.
@@ -291,8 +267,6 @@ iterator.next().value;
 //> undefined
 ```
 
-
-
 ### `reverseIterator()`
 
 In theory, following the semantics of `[Symbol.iterator]()`, this should be `[Symbol.reverseIterator]()`. However, as a developer, I cannot define a well-known symbol myself and make use of it. In the future, the a proposal like [The ReverseIterable Interface, by Lee Byron](https://github.com/leebyron/ecmascript-reverse-iterable) might make it’s way into the specification. For the time being, the `reverseIterator()` function serves the same purpose.
@@ -326,8 +300,6 @@ iterator.next().value;
 iterator.next().value;
 //> undefined
 ```
-
-
 
 ### `values()`
 
@@ -365,8 +337,6 @@ iterator.next().value;
 //> undefined
 ```
 
-
-
 ### `[Symbol.iterator]()`
 
 Returns the array iterator function. By default, this is the `values()` function.
@@ -400,8 +370,6 @@ iterator.next().value;
 iterator.next().value;
 //> undefined
 ```
-
-
 
 ### `[Symbol.toStringTag]()`
 
