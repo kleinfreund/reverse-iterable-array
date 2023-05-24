@@ -27,9 +27,9 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 */
 	entries(): ReverseIterableIterator<[number, T]> {
-		const getIteratorValue = (index: number): [number, T] => [index, this[index] as T];
+		const getIteratorValue = (index: number): [number, T] => [index, this[index] as T]
 
-		return this._iterableIterator(getIteratorValue);
+		return this._iterableIterator(getIteratorValue)
 	}
 
 	/**
@@ -44,7 +44,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
 		thisArg?: any
 	) {
 		for (const [index, value] of this.entries().reverseIterator()) {
-			callbackfn.call(thisArg, value, index, this);
+			callbackfn.call(thisArg, value, index, this)
 		}
 	}
 
@@ -55,9 +55,9 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 */
 	keys(): ReverseIterableIterator<number> {
-		const getIteratorValue = (index: number): number => index;
+		const getIteratorValue = (index: number): number => index
 
-		return this._iterableIterator(getIteratorValue);
+		return this._iterableIterator(getIteratorValue)
 	}
 
 	/**
@@ -66,7 +66,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 	 */
 	reverseIterator(): IterableIterator<T> {
-		return this.values().reverseIterator();
+		return this.values().reverseIterator()
 	}
 
 	/**
@@ -76,9 +76,9 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 */
 	values(): ReverseIterableIterator<T> {
-		const getIteratorValue = (index: number): T => this[index] as T;
+		const getIteratorValue = (index: number): T => this[index] as T
 
-		return this._iterableIterator(getIteratorValue);
+		return this._iterableIterator(getIteratorValue)
 	}
 
 	/**
@@ -88,7 +88,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * [1]:  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator
 	 */
 	[Symbol.iterator](): ReverseIterableIterator<T> {
-		return this.values();
+		return this.values()
 	}
 
 	/**
@@ -99,7 +99,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * @returns The string tag of the `ReverseIterableArray` class.
 	 */
 	get [Symbol.toStringTag]() {
-		return 'ReverseIterableArray';
+		return 'ReverseIterableArray'
 	}
 
 	/**
@@ -112,9 +112,9 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * @param index The index of the element to start iterating from.
 	 */
 	iteratorFor(index: number): ReverseIterableIterator<[number, T]> {
-		const getIteratorValue = (index: number): [number, T] => [index, this[index] as T];
+		const getIteratorValue = (index: number): [number, T] => [index, this[index] as T]
 
-		return this._iterableIterator(getIteratorValue, index);
+		return this._iterableIterator(getIteratorValue, index)
 	}
 
 	/**
@@ -141,38 +141,38 @@ export default class ReverseIterableArray<T> extends Array<T> {
 		getIteratorValue: (index: number) => [number, T] | number | T,
 		startIndex?: number
 	): ReverseIterableIterator<any> {
-		let currentIndex = startIndex !== undefined ? startIndex : 0;
+		let currentIndex = startIndex !== undefined ? startIndex : 0
 		// Store the last array index because inside the reverseIterator() method, `this` will be
 		// bound to the `iterableIterator` method, not the `ReverseIterableArray` object.
-		const lastIndex = this.length - 1;
-		let nextStep = 1;
+		const lastIndex = this.length - 1
+		let nextStep = 1
 
 		return {
 			reverseIterator() {
-				currentIndex = startIndex !== undefined ? startIndex : lastIndex;
-				nextStep = -1;
+				currentIndex = startIndex !== undefined ? startIndex : lastIndex
+				nextStep = -1
 
-				return this;
+				return this
 			},
 
 			[Symbol.iterator]() {
 				// Return the iterable itself.
-				return this;
+				return this
 			},
 
 			next() {
-				let value;
+				let value
 
 				if (0 <= currentIndex && currentIndex <= lastIndex) {
-					value = getIteratorValue(currentIndex);
-					currentIndex += nextStep;
+					value = getIteratorValue(currentIndex)
+					currentIndex += nextStep
 				}
 
 				return {
 					value,
 					done: value === undefined
-				};
+				}
 			}
-		};
+		}
 	}
-};
+}
