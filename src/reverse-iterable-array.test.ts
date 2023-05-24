@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest'
+
 import ReverseIterableArray from './reverse-iterable-array.js'
 
 describe('ReverseIterableArray', () => {
