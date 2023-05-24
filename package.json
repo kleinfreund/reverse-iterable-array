@@ -22,12 +22,19 @@
 		"iterator"
 	],
 	"type": "module",
-	"exports": "./dist/reverse-iterable-array.js",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"default": "./dist/reverse-iterable-array.js"
+		},
+		"./types/index.d.ts": "./types/index.d.ts"
+	},
 	"main": "./dist/reverse-iterable-array.js",
 	"module": "./dist/reverse-iterable-array.js",
 	"sideEffects": false,
 	"files": [
-		"dist"
+		"dist",
+		"types"
 	],
 	"scripts": {
 		"build": "rollup --config",

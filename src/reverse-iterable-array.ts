@@ -1,3 +1,5 @@
+import { ReverseIterableIterator } from '../types/index.d.js'
+
 /**
  * A reverse-iterable array implementation based on the built-in [`Array`][1] object.
  *
@@ -166,30 +168,11 @@ export default class ReverseIterableArray<T> extends Array<T> {
 					currentIndex += nextStep;
 				}
 
-				return iteratorResult(value);
+				return {
+					value,
+					done: value === undefined
+				};
 			}
 		};
 	}
 };
-
-/**
- * Returns an `IteratorResult` object as per the following rules:
- *
- * - If `value` is not `undefined`, `done` is `false`.
- * - If `value` is `undefined`, `done` is `true`. In this case, `value` may be omitted.
- */
-function iteratorResult<T>(value: T): IteratorResult<T> {
-	return {
-		value: value,
-		done: value === undefined
-	};
-}
-
-/**
- * Custom `IterableIterator` interface including a `reverseIterator` function.
- * Should reverse-iteration make it into ECMAScript, this function would probably be named
- * `[Symbol.reverseIterator]`.
- */
-interface ReverseIterableIterator<T> extends IterableIterator<T> {
-	reverseIterator(): IterableIterator<T>;
-}

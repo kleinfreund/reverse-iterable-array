@@ -1,4 +1,4 @@
-import ReverseIterableArray from './reverse-iterable-array';
+import ReverseIterableArray from './reverse-iterable-array.js';
 
 describe('ReverseIterableArray', () => {
 	test('Construct array without argument', () => {
