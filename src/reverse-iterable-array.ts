@@ -170,7 +170,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
 
 				return {
 					value,
-					done: value === undefined
+					done: value === undefined,
 				}
 			}
 		}
