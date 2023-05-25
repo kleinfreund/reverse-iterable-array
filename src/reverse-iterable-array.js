@@ -1,4 +1,7 @@
-import { ReverseIterableIterator } from '../types/index.d.js'
+/**
+ * @template T
+ * @typedef {import('../types/index.d.js').ReverseIterableIterator<T>} ReverseIterableIterator
+ */
 
 /**
  * A reverse-iterable array implementation based on the built-in [`Array`][1] object.
@@ -7,15 +10,18 @@ import { ReverseIterableIterator } from '../types/index.d.js'
  * iteration. As per `Array`, the order of a `ReverseIterableArray` is the insertion order.
  *
  * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+ *
+ * @template T
  */
-export default class ReverseIterableArray<T> extends Array<T> {
+export default class ReverseIterableArray extends Array {
 	/**
 	 * An [iterable][1] object that accepts any value as elements and has non-negative integers as
 	 * indices.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol
+	 * @param {T[][] | T[]} arrayLengthOrElements
 	 */
-	constructor(...arrayLengthOrElements: Array<Array<T>> | Array<T>) {
+	constructor(...arrayLengthOrElements) {
 		const arrayArgument = Array.isArray(arguments[0]) ? arguments[0] : arrayLengthOrElements
 		super(...arrayArgument)
 	}
@@ -25,9 +31,11 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * pairs for each element in a `ReverseIterableArray` object in insertion order.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
+	 *
+	 * @returns {ReverseIterableIterator<[number, T]>}
 	 */
-	entries(): ReverseIterableIterator<[number, T]> {
-		const getIteratorValue = (index: number): [number, T] => [index, this[index] as T]
+	entries() {
+		const getIteratorValue = /** @type {(index: number) => [number, T]} */ (index) => [index, /** @type {T} */ (this[index])]
 
 		return this._iterableIterator(getIteratorValue)
 	}
@@ -36,13 +44,10 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * The `forEachReverse()` method executes a provided function once per each index/element pair in
 	 * the `ReverseIterableArray` object, in reverse insertion order.
 	 *
-	 * @param callbackfn
-	 * @param thisArg
+	 * @param {(value: T, index: number, array: ReverseIterableArray<T>) => void} callbackfn
+	 * @param {any} [thisArg]
 	 */
-	forEachReverse(
-		callbackfn: (value: T, index: number, array: ReverseIterableArray<T>) => void,
-		thisArg?: any
-	) {
+	forEachReverse(callbackfn, thisArg) {
 		for (const [index, value] of this.entries().reverseIterator()) {
 			callbackfn.call(thisArg, value, index, this)
 		}
@@ -53,9 +58,11 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * element in a `ReverseIterableArray` object in insertion order.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
+	 *
+	 * @returns {ReverseIterableIterator<number>}
 	 */
-	keys(): ReverseIterableIterator<number> {
-		const getIteratorValue = (index: number): number => index
+	keys() {
+		const getIteratorValue = /** @type {(index: number) => number} */ (index) => index
 
 		return this._iterableIterator(getIteratorValue)
 	}
@@ -64,8 +71,10 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * Allows usage of the [iteration protocols][1] for reverse iteration.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
+	 *
+	 * @returns {IterableIterator<T>}
 	 */
-	reverseIterator(): IterableIterator<T> {
+	reverseIterator() {
 		return this.values().reverseIterator()
 	}
 
@@ -74,9 +83,11 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * `ReverseIterableArray` object in insertion order.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
+	 *
+	 * @returns {ReverseIterableIterator<T>}
 	 */
-	values(): ReverseIterableIterator<T> {
-		const getIteratorValue = (index: number): T => this[index] as T
+	values() {
+		const getIteratorValue = /** @type {(index: number) => T} */ (index) => /** @type {T} */(this[index])
 
 		return this._iterableIterator(getIteratorValue)
 	}
@@ -85,9 +96,11 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 * The initial value of the [@@iterator][1] property is the same function object as the initial
 	 * value of the entries property.
 	 *
-	 * [1]:  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator
+	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator
+	 *
+	 * @returns {ReverseIterableIterator<T>}
 	 */
-	[Symbol.iterator](): ReverseIterableIterator<T> {
+	[Symbol.iterator]() {
 		return this.values()
 	}
 
@@ -96,7 +109,7 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag
 	 *
-	 * @returns The string tag of the `ReverseIterableArray` class.
+	 * @returns {string} The string tag of the `ReverseIterableArray` class.
 	 */
 	get [Symbol.toStringTag]() {
 		return 'ReverseIterableArray'
@@ -109,10 +122,11 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
-	 * @param index The index of the element to start iterating from.
+	 * @param {number} index The index of the element to start iterating from.
+	 * @returns {ReverseIterableIterator<[number, T]>}
 	 */
-	iteratorFor(index: number): ReverseIterableIterator<[number, T]> {
-		const getIteratorValue = (index: number): [number, T] => [index, this[index] as T]
+	iteratorFor(index) {
+		const getIteratorValue = /** @type {(index: number) => [number, T]} */ (index) => [index, /** @type {T} */ (this[index])]
 
 		return this._iterableIterator(getIteratorValue, index)
 	}
@@ -133,14 +147,12 @@ export default class ReverseIterableArray<T> extends Array<T> {
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 	 *
-	 * @param getIteratorValue
-	 * @param startIndex Index of the element to start iterating from
-	 * @returns a reverse-iterable iterator
+	 * @param {(index: number) => [number, T] | number | T} getIteratorValue
+	 * @param {number} [startIndex] Index of the element to start iterating from
+	 * @returns {ReverseIterableIterator<any>} a reverse-iterable iterator
+	 * @private
 	 */
-	private _iterableIterator(
-		getIteratorValue: (index: number) => [number, T] | number | T,
-		startIndex?: number
-	): ReverseIterableIterator<any> {
+	_iterableIterator(getIteratorValue, startIndex) {
 		let currentIndex = startIndex !== undefined ? startIndex : 0
 		// Store the last array index because inside the reverseIterator() method, `this` will be
 		// bound to the `iterableIterator` method, not the `ReverseIterableArray` object.

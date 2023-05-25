@@ -56,7 +56,8 @@ describe('ReverseIterableArray', () => {
 
 		let lowerCaseCodePoint = 97 // 97 is the code point for "a", 98 → "b", etc.
 
-		array.forEach(function (this: any, value) {
+
+		array.forEach(/** @this any */ function (value) {
 			expect(this).toBe(array)
 			expect(value).toBe(String.fromCodePoint(lowerCaseCodePoint))
 
@@ -100,7 +101,7 @@ describe('ReverseIterableArray', () => {
 
 		const obj = {}
 
-		array.forEach(function (this: any) {
+		array.forEach(/** @this any */ function () {
 			expect(this).toBe(obj)
 		}, obj)
 	})
@@ -112,7 +113,7 @@ describe('ReverseIterableArray', () => {
 		let index = 2
 		const obj = {}
 
-		array.forEachReverse(function (this: any, value, key, arrayReference) {
+		array.forEachReverse(/** @this any */ function (value, key, arrayReference) {
 			expect(value).toBe(String.fromCodePoint(lowerCaseCodePoint))
 			expect(key).toBe(index)
 			expect(arrayReference).toBe(array)
