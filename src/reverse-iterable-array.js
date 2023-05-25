@@ -6,8 +6,7 @@
 /**
  * A reverse-iterable array implementation based on the built-in [`Array`][1] object.
  *
- * It exposes its order via iterable iterators which can be used for both forwards and backwards
- * iteration. As per `Array`, the order of a `ReverseIterableArray` is the insertion order.
+ * It exposes its order via iterable iterators which can be used for both forwards and backwards iteration. As per `Array`, the order of a `ReverseIterableArray` is the insertion order.
  *
  * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
  *
@@ -15,10 +14,10 @@
  */
 export default class ReverseIterableArray extends Array {
 	/**
-	 * An [iterable][1] object that accepts any value as elements and has non-negative integers as
-	 * indices.
+	 * An [iterable][1] object that accepts any value as elements and has non-negative integers as indices.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol
+	 *
 	 * @param {T[][] | T[]} arrayLengthOrElements
 	 */
 	constructor(...arrayLengthOrElements) {
@@ -41,8 +40,7 @@ export default class ReverseIterableArray extends Array {
 	}
 
 	/**
-	 * The `forEachReverse()` method executes a provided function once per each index/element pair in
-	 * the `ReverseIterableArray` object, in reverse insertion order.
+	 * The `forEachReverse()` method executes a provided function once per each index/element pair in the `ReverseIterableArray` object, in reverse insertion order.
 	 *
 	 * @param {(value: T, index: number, array: ReverseIterableArray<T>) => void} callbackfn
 	 * @param {any} [thisArg]
@@ -54,8 +52,7 @@ export default class ReverseIterableArray extends Array {
 	}
 
 	/**
-	 * The `keys()` method returns a new [Iterator][1] object that contains the index for each
-	 * element in a `ReverseIterableArray` object in insertion order.
+	 * The `keys()` method returns a new [Iterator][1] object that contains the index for each element in a `ReverseIterableArray` object in insertion order.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
@@ -79,8 +76,7 @@ export default class ReverseIterableArray extends Array {
 	}
 
 	/**
-	 * The `values()` method returns a new [iterator][1] object that contains the elements in a
-	 * `ReverseIterableArray` object in insertion order.
+	 * The `values()` method returns a new [iterator][1] object that contains the elements in a `ReverseIterableArray` object in insertion order.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
@@ -93,8 +89,7 @@ export default class ReverseIterableArray extends Array {
 	}
 
 	/**
-	 * The initial value of the [@@iterator][1] property is the same function object as the initial
-	 * value of the entries property.
+	 * The initial value of the [@@iterator][1] property is the same function object as the initial value of the entries property.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator
 	 *
@@ -116,9 +111,7 @@ export default class ReverseIterableArray extends Array {
 	}
 
 	/**
-	 * The `iteratorFor()` method returns a new [iterator][1] object that contains the
-	 * `[index, element]` pairs for each element in a `ReverseIterableArray` object in insertion order
-	 *  **starting with the pair specified by the `index` parameter**.
+	 * The `iteratorFor()` method returns a new [iterator][1] object that contains the `[index, element]` pairs for each element in a `ReverseIterableArray` object in insertion order **starting with the pair specified by the `index` parameter**.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
@@ -132,18 +125,13 @@ export default class ReverseIterableArray extends Array {
 	}
 
 	/**
-	 * Returns an object which is both an iterable and an iterator. It fulfills the requirements of
-	 * the [iteration protocols][1] plus allowing reverse-iteration.
+	 * Returns an object which is both an iterable and an iterator. It fulfills the requirements of the [iteration protocols][1] plus allowing reverse-iteration.
 	 *
-	 * - **Iterator requirements**: An object that implements a function `next`. This function
-	 *   returns an object with two properties: `value` and `done`.
+	 * - **Iterator requirements**: An object that implements a function `next`. This function returns an object with two properties: `value` and `done`.
 	 *
-	 * - **Iterable requirements**: An object that implements a function `[Symbol.iterator]()`. This
-	 *   function returns an iterator.
+	 * - **Iterable requirements**: An object that implements a function `[Symbol.iterator]()`. This function returns an iterator.
 	 *
-	 * - **Reverse-iterable requirements**: An object that implements a function `reverse`. This
-	 *   function returns an iterator with the special behavior of iterating in reverse insertion
-	 *   order. This is non-standard behavior.
+	 * - **Reverse-iterable requirements**: An object that implements a function `reverse`. This function returns an iterator with the special behavior of iterating in reverse insertion order. This is non-standard behavior.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 	 *
