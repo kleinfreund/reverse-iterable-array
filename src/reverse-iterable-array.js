@@ -172,7 +172,7 @@ export default class ReverseIterableArray extends Array {
 					value,
 					done: value === undefined,
 				}
-			}
+			},
 		}
 	}
 }
